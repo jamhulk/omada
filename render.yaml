@@ -1,0 +1,52 @@
+services:
+  - type: web
+    name: omada-controller
+    env: docker
+    plan: starter  # Adjust according to your needs
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PUID
+        value: "508"
+      - key: PGID
+        value: "508"
+      - key: MANAGE_HTTP_PORT
+        value: "8088"
+      - key: MANAGE_HTTPS_PORT
+        value: "8043"
+      - key: PORTAL_HTTP_PORT
+        value: "8088"
+      - key: PORTAL_HTTPS_PORT
+        value: "8843"
+      - key: PORT_APP_DISCOVERY
+        value: "27001"
+      - key: PORT_ADOPT_V1
+        value: "29812"
+      - key: PORT_UPGRADE_V1
+        value: "29813"
+      - key: PORT_MANAGER_V1
+        value: "29811"
+      - key: PORT_MANAGER_V2
+        value: "29814"
+      - key: PORT_DISCOVERY
+        value: "29810"
+      - key: PORT_TRANSFER_V2
+        value: "29815"
+      - key: PORT_RTTY
+        value: "29816"
+      - key: SHOW_SERVER_LOGS
+        value: "true"
+      - key: SHOW_MONGODB_LOGS
+        value: "false"
+      - key: SSL_CERT_NAME
+        value: "tls.crt"
+      - key: SSL_KEY_NAME
+        value: "tls.key"
+      - key: TZ
+        value: "Etc/UTC"
+    mounts:
+      - type: volume
+        name: omada-data
+        path: /opt/tplink/EAPController/data
+      - type: volume
+        name: omada-logs
+        path: /opt/tplink/EAPController/logs
